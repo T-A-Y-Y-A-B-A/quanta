@@ -206,7 +206,11 @@ billing.addEventListener('click', () => {
     amt.classList.remove('flip')
     void amt.offsetWidth // restart the flip animation
     amt.classList.add('flip')
-    $('.plan__billed', plan).textContent = yearly ? `billed yearly · $${(value * 12).toLocaleString('en-US')}/yr` : 'billed monthly'
+    const saved = (Number(amt.dataset.m) - value) * 12
+    // Values come from our own data attributes, so building markup here is safe.
+    $('.plan__billed', plan).innerHTML = yearly
+      ? `billed yearly · $${(value * 12).toLocaleString('en-US')}/yr <b class="plan__save">save $${saved}</b>`
+      : 'billed monthly'
   })
 })
 

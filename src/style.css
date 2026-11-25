@@ -716,6 +716,7 @@ h1, h2, h3, h4 { text-wrap: balance; }
 @keyframes flip { from { opacity: 0; translate: 0 -35%; } }
 .price__per { margin-left: 6px; color: var(--muted); font-family: var(--font-body); }
 .plan__billed { min-height: 1.4em; margin: 0.4rem 0 1.6rem; color: var(--dim); font-size: 0.85rem; }
+.plan__save { margin-left: 0.3rem; color: var(--green); font-weight: 600; }
 .plan__list { display: grid; gap: 0.85rem; margin: 1.8rem 0 0; padding: 1.6rem 0 0; border-top: 1px solid var(--line); list-style: none; }
 .plan__list li { display: flex; align-items: center; gap: 0.65rem; color: #e8dfd3; font-size: 0.95rem; }
 .plan__list .i { width: 20px; height: 20px; padding: 3px; border-radius: 50%; background: rgba(255, 106, 61, 0.18); color: var(--accent-2); stroke-width: 2.6; }
