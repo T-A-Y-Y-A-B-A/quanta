@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "author": "Tayyaba Imtiaz",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite",
