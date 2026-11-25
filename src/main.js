@@ -149,11 +149,13 @@ const steps = $('#steps')
 const stepItems = $$('.step', steps)
 let ticking = false
 
+const toTop = $('.to-top')
 function onScroll() {
   ticking = false
   const vh = innerHeight
   const y = scrollY
   nav.classList.toggle('scrolled', y > 24)
+  toTop.classList.toggle('show', y > vh * 1.2)
   const max = document.documentElement.scrollHeight - vh
   progressBar.style.transform = `scaleX(${max > 0 ? y / max : 0})`
 
