@@ -198,6 +198,7 @@ billing.addEventListener('click', () => {
   const yearly = billing.getAttribute('aria-checked') !== 'true'
   billing.setAttribute('aria-checked', String(yearly))
   $('.pricing').classList.toggle('yearly', yearly)
+  $('#billing-status').textContent = yearly ? 'Showing yearly prices, 20% off.' : 'Showing monthly prices.'
   $$('.plan').forEach((plan) => {
     const amt = $('.price__amt', plan)
     const value = Number(yearly ? amt.dataset.y : amt.dataset.m)
