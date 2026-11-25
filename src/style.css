@@ -481,7 +481,7 @@ h1, h2, h3, h4 { text-wrap: balance; }
 .feat,
 .plan { isolation: isolate; }
 .js .tilt {
-  transition: opacity 0.9s var(--ease) var(--d, 0s), translate 0.9s var(--ease) var(--d, 0s), transform 0.35s var(--ease), border-color 0.3s;
+  transition: opacity 0.9s var(--ease) var(--d, 0s), translate 0.9s var(--ease) var(--d, 0s), transform 0.35s var(--ease), border-color 0.3s, filter 0.4s var(--ease);
 }
 .feat::before,
 .plan::before {
@@ -716,6 +716,7 @@ h1, h2, h3, h4 { text-wrap: balance; }
 @keyframes flip { from { opacity: 0; translate: 0 -35%; } }
 .price__per { margin-left: 6px; color: var(--muted); font-family: var(--font-body); }
 .plan__billed { min-height: 1.4em; margin: 0.4rem 0 1.6rem; color: var(--dim); font-size: 0.85rem; }
+.plan__save { margin-left: 0.3rem; color: var(--green); font-weight: 600; }
 .plan__list { display: grid; gap: 0.85rem; margin: 1.8rem 0 0; padding: 1.6rem 0 0; border-top: 1px solid var(--line); list-style: none; }
 .plan__list li { display: flex; align-items: center; gap: 0.65rem; color: #e8dfd3; font-size: 0.95rem; }
 .plan__list .i { width: 20px; height: 20px; padding: 3px; border-radius: 50%; background: rgba(255, 106, 61, 0.18); color: var(--accent-2); stroke-width: 2.6; }
@@ -732,6 +733,10 @@ h1, h2, h3, h4 { text-wrap: balance; }
   padding: 5px 14px; border-radius: 999px; background: var(--btn); color: var(--on-btn);
   box-shadow: 0 6px 20px -4px rgba(240, 83, 31, 0.8);
   font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap;
+}
+/* Hovering one plan gently dims the other two. */
+@media (hover: hover) {
+  .plans:has(.plan:hover) .plan:not(:hover) { filter: brightness(0.7) saturate(0.85); }
 }
 .plans__note { margin: 2.4rem 0 0; color: var(--muted); text-align: center; }
 
@@ -854,6 +859,19 @@ details[open]::details-content { block-size: auto; }
   background: linear-gradient(180deg, rgba(255, 148, 102, 0.38), rgba(255, 148, 102, 0) 85%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
+
+/* ============ Back to top ============ */
+.to-top {
+  position: fixed; right: 20px; bottom: 20px; z-index: 40;
+  display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%;
+  background: var(--btn); color: var(--on-btn);
+  box-shadow: 0 10px 30px -8px rgba(240, 83, 31, 0.7);
+  opacity: 0; visibility: hidden; translate: 0 16px;
+  transition: opacity 0.3s, visibility 0.3s, translate 0.35s var(--ease);
+}
+.to-top.show { opacity: 1; visibility: visible; translate: none; }
+.to-top .i { width: 20px; height: 20px; rotate: -90deg; transition: translate 0.3s var(--ease); }
+.to-top:hover .i { translate: 0 -3px; }
 
 /* ============ Responsive ============ */
 @media (max-width: 1180px) {
