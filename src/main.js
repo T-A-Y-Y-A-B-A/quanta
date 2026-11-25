@@ -19,6 +19,10 @@ const setMenu = (open) => {
   burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu')
 }
 burger.addEventListener('click', () => setMenu(!nav.classList.contains('open')))
+// Tapping anywhere outside the open menu closes it.
+document.addEventListener('click', (e) => {
+  if (nav.classList.contains('open') && !nav.contains(e.target)) setMenu(false)
+})
 menu.addEventListener('click', (e) => e.target.closest('a') && setMenu(false))
 addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && nav.classList.contains('open')) {
