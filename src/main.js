@@ -19,6 +19,10 @@ const setMenu = (open) => {
   burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu')
 }
 burger.addEventListener('click', () => setMenu(!nav.classList.contains('open')))
+// Tapping anywhere outside the open menu closes it.
+document.addEventListener('click', (e) => {
+  if (nav.classList.contains('open') && !nav.contains(e.target)) setMenu(false)
+})
 menu.addEventListener('click', (e) => e.target.closest('a') && setMenu(false))
 addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && nav.classList.contains('open')) {
@@ -31,7 +35,13 @@ const navLinks = $$('#menu a:not(.btn)')
 const spy = new IntersectionObserver(
   (entries) => {
     for (const e of entries) {
-      if (e.isIntersecting) navLinks.forEach((a) => a.classList.toggle('active', a.hash === `#${e.target.id}`))
+      if (!e.isIntersecting) continue
+      for (const a of navLinks) {
+        const current = a.hash === `#${e.target.id}`
+        a.classList.toggle('active', current)
+        if (current) a.setAttribute('aria-current', 'location')
+        else a.removeAttribute('aria-current')
+      }
     }
   },
   { rootMargin: '-45% 0px -50% 0px' },
@@ -188,6 +198,7 @@ billing.addEventListener('click', () => {
   const yearly = billing.getAttribute('aria-checked') !== 'true'
   billing.setAttribute('aria-checked', String(yearly))
   $('.pricing').classList.toggle('yearly', yearly)
+  $('#billing-status').textContent = yearly ? 'Showing yearly prices, 20% off.' : 'Showing monthly prices.'
   $$('.plan').forEach((plan) => {
     const amt = $('.price__amt', plan)
     const value = Number(yearly ? amt.dataset.y : amt.dataset.m)
