@@ -217,6 +217,7 @@ form.addEventListener('submit', (e) => {
 })
 
 $('#year').textContent = new Date().getFullYear()
+console.log('%cQuanta%c  Made by Tayyaba Imtiaz', 'font:700 20px sans-serif;color:#ff6a3d', 'font:italic 14px Georgia,serif;color:#ffc861')
 
 /* ---------- 3D scene: loaded after first paint so it never blocks content ---------- */
 // Skip WebGL on software-rendered devices (no GPU): the CSS aura background still looks complete.

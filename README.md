@@ -2,6 +2,8 @@
 
 A 3D, animated landing page for a fictional real-time analytics product, built with Vite and Three.js.
 
+Designed and built by **Tayyaba Imtiaz**.
+
 ## Run locally
 
 ```bash
