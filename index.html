@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quanta — Real-time analytics that thinks ahead</title>
+    <meta name="description" content="Quanta streams every event from your product, revenue and ops tools into one living model, and its AI copilot surfaces the moves that matter in real time." />
+    <meta name="theme-color" content="#0c0a09" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Quanta — Real-time analytics that thinks ahead" />
+    <meta property="og:description" content="One living model of your business, explained by AI, updated in real time." />
+    <meta name="twitter:card" content="summary" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script>document.documentElement.classList.add('js')</script>
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <!-- Icon sprite: one definition, reused everywhere via <use> -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="g-logo" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#ffd3a8" />
+          <stop offset=".5" stop-color="#ff6a3d" />
+          <stop offset="1" stop-color="#ffc861" />
+        </linearGradient>
+        <linearGradient id="g-flow" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="400" y2="0">
+          <stop offset="0" stop-color="#ff6a3d" stop-opacity="0" />
+          <stop offset=".5" stop-color="#ff9466" />
+          <stop offset="1" stop-color="#ffc861" />
+        </linearGradient>
+      </defs>
+      <symbol id="logo" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="10.5" fill="none" stroke="url(#g-logo)" stroke-width="3.4" />
+        <path d="M21 21l6 6" stroke="url(#g-logo)" stroke-width="3.4" stroke-linecap="round" />
+        <circle cx="16" cy="16" r="3.6" fill="#fff" />
+      </symbol>
+      <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M3 12h4l3-7 4 14 3-7h4" /></symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path d="M11 3l1.9 5.1L18 10l-5.1 1.9L11 17l-1.9-5.1L4 10l5.1-1.9z" /><path d="M19 14.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z" /></symbol>
+      <symbol id="i-radar" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><path d="M12 12l6.4-6.4" /></symbol>
+      <symbol id="i-layout" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" /><path d="M3 9h18M9 21V9" /></symbol>
+      <symbol id="i-plug" viewBox="0 0 24 24"><path d="M9 3v5M15 3v5M6 8h12v3a6 6 0 0 1-12 0zM12 17v4" /></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.6-3.4 8-8 9-4.6-1-8-4.4-8-9V6z" /><path d="M9 12l2 2 4-4" /></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" /></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor" stroke="none" /></symbol>
+      <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.8 6.4.9-4.6 4.5 1.1 6.3L12 17.3l-5.7 3 1.1-6.3L2.8 9.5l6.4-.9z" fill="currentColor" stroke="none" /></symbol>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z" /></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4zM10 21h4" /></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H6v18h12V7zM14 3v4h4M9 13h6M9 17h6" /></symbol>
+      <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1" /></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2.5" /><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14.5v2.5" /></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" /></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M4 4l16 16M20 4 4 20" /></symbol>
+      <symbol id="i-in" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" /><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7" /></symbol>
+      <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5" /></symbol>
+      <symbol id="i-yt" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="4" /><path d="M10 9.5v5l4.5-2.5z" /></symbol>
+    </svg>
+
+    <div class="aura" aria-hidden="true"></div>
+    <canvas id="gl" aria-hidden="true"></canvas>
+
+    <!-- ============ NAVBAR ============ -->
+    <header class="nav">
+      <div class="nav__inner">
+        <a href="#hero" class="logo" aria-label="Quanta home">
+          <svg><use href="#logo" /></svg><span>Quanta</span>
+        </a>
+        <nav id="menu" class="nav__menu" aria-label="Primary">
+          <a href="#product">Product</a>
+          <a href="#features">Features</a>
+          <a href="#how">How it works</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+          <a href="#pricing" class="btn btn--primary nav__menu-cta">Start free trial</a>
+        </nav>
+        <div class="nav__actions">
+          <a href="#cta" class="nav__login">Log in</a>
+          <a href="#pricing" class="btn btn--primary btn--sm">Start free <svg class="i"><use href="#i-arrow" /></svg></a>
+          <button class="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
+            <span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <div class="nav__progress" aria-hidden="true"></div>
+    </header>
+
+    <main id="main">
+      <!-- ============ HERO ============ -->
+      <section class="hero" id="hero">
+        <div class="container hero__grid">
+          <div class="hero__copy">
+            <a href="#features" class="pill rise" style="--d:.05s">
+              <span class="pill__tag">New</span> Copilot 2.0 now predicts churn
+              <svg class="i"><use href="#i-arrow" /></svg>
+            </a>
+            <h1 class="hero__title">
+              <span class="line"><span class="line__in" style="--i:0">See what’s next,</span></span>
+              <span class="line"><span class="line__in grad" style="--i:1">before it happens.</span></span>
+            </h1>
+            <p class="hero__lead rise" style="--d:.3s">
+              Quanta streams every event from your product, revenue and ops tools into one living model,
+              then its AI copilot surfaces the moves that matter. In real time.
+            </p>
+            <div class="hero__ctas rise" style="--d:.4s">
+              <a href="#pricing" class="btn btn--primary btn--lg">Start free trial <svg class="i"><use href="#i-arrow" /></svg></a>
+              <a href="#product" class="btn btn--ghost btn--lg"><span class="play"><svg class="i"><use href="#i-play" /></svg></span> See it in action</a>
+            </div>
+            <ul class="hero__trust rise" style="--d:.5s">
+              <li><svg class="i"><use href="#i-check" /></svg>No credit card</li>
+              <li><svg class="i"><use href="#i-check" /></svg>Live in 5 minutes</li>
+              <li><svg class="i"><use href="#i-check" /></svg>SOC 2 Type II</li>
+            </ul>
+          </div>
+          <div class="hero__visual" aria-hidden="true">
+            <div class="chip chip--a"><span class="dot dot--live"></span><b>1.28M</b> events / sec</div>
+            <div class="chip chip--b"><svg class="i"><use href="#i-spark" /></svg>Churn risk <b class="ok">↓ 18%</b></div>
+            <div class="chip chip--c"><span class="chip__kpi">+23.4%</span><span>conversion<br />this week</span></div>
+          </div>
+        </div>
+
+        <div class="logos container">
+          <p>Powering decisions at 4,000+ fast-moving teams</p>
+          <div class="marquee">
+            <div class="marquee__track" data-marquee>
+              <span class="brand"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 16H3z" /></svg>Kestrel</span>
+              <span class="brand"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" /><path d="M4 12h16" /></svg>Novaline</span>
+              <span class="brand"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2" /></svg>Helio</span>
+              <span class="brand"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l8.66 5v10L12 22l-8.66-5V7z" /></svg>Brightforge</span>
+              <span class="brand"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l10 10-10 10L2 12z" /></svg>Meridian</span>
+              <span class="brand"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 20l7-11 4 6 3-4 6 9z" /></svg>Altitude</span>
+              <span class="brand"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4" /></svg>Cobalt</span>
+              <span class="brand"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5z" /></svg>Polaris</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PRODUCT PREVIEW ============ -->
+      <section class="section product" id="product">
+        <div class="container">
+          <header class="section__head" data-reveal>
+            <p class="eyebrow">Product</p>
+            <h2>Your whole business in one <span class="grad">living canvas</span>.</h2>
+            <p>Every metric, every stream, every anomaly. Updating live, explained by AI, shareable in one click.</p>
+          </header>
+
+          <div class="stage" id="stage" data-reveal>
+            <div class="dash" role="img" aria-label="Quanta dashboard preview: revenue, active users, conversion and churn metrics, a revenue chart, an AI insight and a live event feed.">
+              <div class="dash__bar">
+                <span class="dash__dots"><i></i><i></i><i></i></span>
+                <span class="dash__url"><svg class="i"><use href="#i-lock" /></svg>app.quanta.io/overview</span>
+                <span class="dash__live"><span class="dot dot--live"></span>Live</span>
+              </div>
+              <div class="dash__body">
+                <aside class="dash__side">
+                  <svg class="dash__logo"><use href="#logo" /></svg>
+                  <i class="on"><svg class="i"><use href="#i-home" /></svg></i>
+                  <i><svg class="i"><use href="#i-pulse" /></svg></i>
+                  <i><svg class="i"><use href="#i-spark" /></svg></i>
+                  <i><svg class="i"><use href="#i-bell" /></svg></i>
+                  <i><svg class="i"><use href="#i-file" /></svg></i>
+                  <i class="push"><svg class="i"><use href="#i-gear" /></svg></i>
+                </aside>
+                <div class="dash__main">
+                  <div class="dash__top">
+                    <div>
+                      <h3>Good morning, Maya</h3>
+                      <p>Here’s what moved in the last 7 days.</p>
+                    </div>
+                    <div class="seg"><span>24h</span><span class="on">7d</span><span>30d</span></div>
+                  </div>
+
+                  <div class="kpis">
+                    <div class="kpi">
+                      <span class="kpi__label">Revenue</span>
+                      <b class="kpi__value" data-count="482.9" data-prefix="$" data-suffix="K" data-decimals="1">$482.9K</b>
+                      <span class="delta up">▲ 12.4%</span>
+                      <svg class="spark" viewBox="0 0 80 28" preserveAspectRatio="none"><path d="M0 24 L10 20 L20 22 L30 15 L40 17 L50 10 L60 12 L70 5 L80 3" /></svg>
+                    </div>
+                    <div class="kpi">
+                      <span class="kpi__label">Active users</span>
+                      <b class="kpi__value" data-count="38214">38,214</b>
+                      <span class="delta up">▲ 8.1%</span>
+                      <svg class="spark" viewBox="0 0 80 28" preserveAspectRatio="none"><path d="M0 20 L10 22 L20 16 L30 18 L40 12 L50 14 L60 9 L70 10 L80 6" /></svg>
+                    </div>
+                    <div class="kpi">
+                      <span class="kpi__label">Conversion</span>
+                      <b class="kpi__value" data-count="4.72" data-suffix="%" data-decimals="2">4.72%</b>
+                      <span class="delta up">▲ 0.6 pt</span>
+                      <svg class="spark" viewBox="0 0 80 28" preserveAspectRatio="none"><path d="M0 22 L10 21 L20 23 L30 17 L40 18 L50 13 L60 15 L70 8 L80 7" /></svg>
+                    </div>
+                    <div class="kpi">
+                      <span class="kpi__label">Churn risk</span>
+                      <b class="kpi__value" data-count="2.1" data-suffix="%" data-decimals="1">2.1%</b>
+                      <span class="delta up">▼ 0.4 pt</span>
+                      <svg class="spark spark--down" viewBox="0 0 80 28" preserveAspectRatio="none"><path d="M0 5 L10 8 L20 6 L30 12 L40 10 L50 16 L60 15 L70 21 L80 23" /></svg>
+                    </div>
+                  </div>
+
+                  <div class="dash__grid">
+                    <div class="card chart">
+                      <div class="card__head">
+                        <span>Revenue vs. forecast</span>
+                        <span class="legend"><i class="l1"></i>Actual <i class="l2"></i>Forecast</span>
+                      </div>
+                      <div class="chart__plot">
+                        <svg viewBox="0 0 600 200" preserveAspectRatio="none">
+                          <defs>
+                            <linearGradient id="g-area" x1="0" y1="0" x2="0" y2="1">
+                              <stop offset="0" stop-color="#ff6a3d" stop-opacity=".45" />
+                              <stop offset="1" stop-color="#ff6a3d" stop-opacity="0" />
+                            </linearGradient>
+                            <linearGradient id="g-line" x1="0" y1="0" x2="1" y2="0">
+                              <stop offset="0" stop-color="#ff9466" />
+                              <stop offset="1" stop-color="#ffc861" />
+                            </linearGradient>
+                          </defs>
+                          <g class="chart__grid"><path d="M0 40H600M0 90H600M0 140H600M0 190H600" /></g>
+                          <path class="chart__area" d="M0 160 C50 150 80 140 120 135 S200 145 240 115 S320 85 360 95 S430 65 480 58 S560 40 600 26 L600 200 L0 200Z" fill="url(#g-area)" />
+                          <path class="chart__forecast" d="M0 170 C60 165 110 150 160 148 S260 130 320 118 S430 95 480 88 S560 72 600 64" />
+                          <path class="chart__line" pathLength="1" d="M0 160 C50 150 80 140 120 135 S200 145 240 115 S320 85 360 95 S430 65 480 58 S560 40 600 26" />
+                        </svg>
+                        <span class="chart__tip" style="left:80%;top:29%"><b>$71.2K</b> Fri · +31%</span>
+                        <span class="chart__dot"></span>
+                      </div>
+                    </div>
+
+                    <div class="card copilot">
+                      <div class="card__head">
+                        <span class="copilot__title"><svg class="i"><use href="#i-spark" /></svg>Copilot insight</span>
+                        <span class="tag">New</span>
+                      </div>
+                      <p class="typed">
+                        <span class="typed__ghost">Checkout conversion in Germany jumped 23% after Tuesday’s pricing test. Rolling it out to France and Spain could add ≈ $41K MRR.</span>
+                        <span class="typed__out"></span>
+                      </p>
+                      <div class="copilot__actions"><span class="mini">Roll out</span><span class="mini mini--ghost">Explain why</span></div>
+                    </div>
+
+                    <div class="card bars">
+                      <div class="card__head"><span>Traffic by channel</span></div>
+                      <ul class="bars__list">
+                        <li style="--v:.92"><span>Organic</span><i></i><b>42%</b></li>
+                        <li style="--v:.62"><span>Paid</span><i></i><b>27%</b></li>
+                        <li style="--v:.42"><span>Referral</span><i></i><b>18%</b></li>
+                        <li style="--v:.3"><span>Social</span><i></i><b>13%</b></li>
+                      </ul>
+                    </div>
+
+                    <div class="card feed">
+                      <div class="card__head"><span>Live events</span><span class="dot dot--live"></span></div>
+                      <ul class="feed__list" id="feed">
+                        <li><i class="ev ev--a"></i><span>New signup <em>· Berlin</em></span><time>now</time></li>
+                        <li><i class="ev ev--b"></i><span>Upgraded to Growth <em>· Austin</em></span><time>3s ago</time></li>
+                        <li><i class="ev ev--c"></i><span>Invoice paid · $1,240 <em>· Toronto</em></span><time>6s ago</time></li>
+                        <li><i class="ev ev--d"></i><span>Anomaly resolved <em>· Checkout</em></span><time>9s ago</time></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="float float--1" aria-hidden="true"><svg class="i"><use href="#i-bolt" /></svg><span><b>Anomaly caught</b><small>Checkout API · 2 min ago</small></span></div>
+            <div class="float float--2" aria-hidden="true"><span class="float__ring"></span><span><b>214 sources</b><small>synced in real time</small></span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FEATURES ============ -->
+      <section class="section" id="features">
+        <div class="container">
+          <header class="section__head" data-reveal>
+            <p class="eyebrow">Features</p>
+            <h2>Built for teams that move on <span class="grad">signal</span>, not noise.</h2>
+            <p>Six superpowers in one platform. No duct-taped dashboards, no stale CSV exports.</p>
+          </header>
+
+          <div class="bento">
+            <article class="feat feat--streams tilt" data-reveal>
+              <div class="feat__icon"><svg class="i"><use href="#i-pulse" /></svg></div>
+              <h3>Real-time streams</h3>
+              <p>Sub-second ingestion from 200+ sources. Every click, charge and ticket lands in one unified model.</p>
+              <svg class="art-streams" viewBox="0 0 400 120" aria-hidden="true">
+                <g class="base"><path d="M0 18C130 18 200 60 330 60" /><path d="M0 60H330" /><path d="M0 102C130 102 200 60 330 60" /></g>
+                <g class="flow"><path d="M0 18C130 18 200 60 330 60" /><path d="M0 60H330" /><path d="M0 102C130 102 200 60 330 60" /></g>
+                <circle class="node" cx="350" cy="60" r="16" />
+                <circle class="node-core" cx="350" cy="60" r="6" />
+              </svg>
+            </article>
+
+            <article class="feat feat--copilot tilt" data-reveal style="--d:.08s">
+              <div class="feat__icon"><svg class="i"><use href="#i-spark" /></svg></div>
+              <h3>AI Copilot</h3>
+              <p>Ask anything in plain English. Get charts, root causes and next steps in seconds.</p>
+              <div class="chat" aria-hidden="true">
+                <div class="chat__q">Why did signups dip on Friday?</div>
+                <div class="chat__a">
+                  Mobile checkout errors spiked <b>4×</b> after release 2.14. Rolling back would recover ~<b>620</b> signups/day.
+                  <span class="chat__bars"><i style="--h:.5"></i><i style="--h:.65"></i><i style="--h:.55"></i><i style="--h:.2"></i><i style="--h:.25"></i><i style="--h:.7"></i></span>
+                </div>
+                <div class="chat__typing"><i></i><i></i><i></i></div>
+              </div>
+            </article>
+
+            <article class="feat feat--radar tilt" data-reveal>
+              <div class="feat__icon"><svg class="i"><use href="#i-radar" /></svg></div>
+              <h3>Anomaly radar</h3>
+              <p>Catches spikes, dips and drifts before your customers do.</p>
+              <div class="radar" aria-hidden="true"><span class="radar__sweep"></span><i style="--x:30%;--y:34%"></i><i style="--x:68%;--y:60%;--delay:1.2s"></i><i style="--x:44%;--y:74%;--delay:2.1s"></i></div>
+            </article>
+
+            <article class="feat feat--boards tilt" data-reveal style="--d:.08s">
+              <div class="feat__icon"><svg class="i"><use href="#i-layout" /></svg></div>
+              <h3>Living dashboards</h3>
+              <p>Drag, drop, done. Share live boards with anyone, no logins required.</p>
+              <div class="tiles" aria-hidden="true">
+                <span class="tile tile--bars"><i></i><i></i><i></i><i></i></span>
+                <span class="tile tile--donut"></span>
+                <span class="tile tile--line"><svg viewBox="0 0 60 30" preserveAspectRatio="none"><path d="M0 25 L12 18 L24 21 L36 10 L48 13 L60 4" /></svg></span>
+                <span class="tile tile--num">98.7<small>%</small></span>
+              </div>
+            </article>
+
+            <article class="feat feat--integrations tilt" data-reveal>
+              <div class="feat__icon"><svg class="i"><use href="#i-plug" /></svg></div>
+              <h3>200+ integrations</h3>
+              <p>Warehouses, billing, CRM and product analytics, connected in clicks.</p>
+              <div class="orbit" aria-hidden="true">
+                <span class="orbit__core"><svg><use href="#logo" /></svg></span>
+                <span class="orbit__ring orbit__ring--1"><i></i><i></i><i></i></span>
+                <span class="orbit__ring orbit__ring--2"><i></i><i></i></span>
+              </div>
+            </article>
+
+            <article class="feat feat--security tilt" data-reveal style="--d:.08s">
+              <div class="feat__icon"><svg class="i"><use href="#i-shield" /></svg></div>
+              <h3>Enterprise-grade security</h3>
+              <p>Your data stays yours: encrypted end to end, isolated per workspace and audited continuously.</p>
+              <ul class="badges">
+                <li><svg class="i"><use href="#i-check" /></svg>SOC 2 Type II</li>
+                <li><svg class="i"><use href="#i-check" /></svg>GDPR</li>
+                <li><svg class="i"><use href="#i-check" /></svg>SSO / SAML</li>
+                <li><svg class="i"><use href="#i-check" /></svg>AES-256</li>
+                <li><svg class="i"><use href="#i-check" /></svg>EU &amp; US residency</li>
+                <li><svg class="i"><use href="#i-check" /></svg>99.99% SLA</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ HOW IT WORKS ============ -->
+      <section class="section how" id="how">
+        <div class="container how__grid">
+          <div class="how__intro" data-reveal>
+            <p class="eyebrow">How it works</p>
+            <h2>From raw data to <span class="grad">decisive action</span> in three steps.</h2>
+            <p>Most teams are live in a single afternoon. No warehouse migration, no consultants, no six-month rollout.</p>
+            <a href="#pricing" class="btn btn--ghost">Start your setup <svg class="i"><use href="#i-arrow" /></svg></a>
+          </div>
+
+          <ol class="steps" id="steps">
+            <li class="step" data-reveal>
+              <span class="step__num">01</span>
+              <div class="step__body">
+                <h3>Connect your stack</h3>
+                <p>Plug in your tools with no-code connectors. Historical data backfills automatically while new events stream in live.</p>
+                <ul class="step__chips" aria-hidden="true">
+                  <li style="--k:0">Warehouse</li><li style="--k:1">Billing</li><li style="--k:2">CRM</li><li style="--k:3">Product events</li><li style="--k:4">Support</li>
+                </ul>
+              </div>
+            </li>
+            <li class="step" data-reveal>
+              <span class="step__num">02</span>
+              <div class="step__body">
+                <h3>Let Quanta learn your business</h3>
+                <p>Quanta models your metrics into a living graph and learns what “normal” looks like for every segment, season and channel.</p>
+                <pre class="step__code" aria-hidden="true"><span class="k">metric</span> revenue_net
+<span class="k">segments</span> region · plan · channel
+<span class="k">baseline</span> <span class="ok">learned ✓</span>  <span class="dim">(14 months)</span></pre>
+              </div>
+            </li>
+            <li class="step" data-reveal>
+              <span class="step__num">03</span>
+              <div class="step__body">
+                <h3>Act before it’s obvious</h3>
+                <p>Get proactive alerts, push insights to your team’s channels and trigger playbooks automatically when something moves.</p>
+                <div class="step__toast" aria-hidden="true">
+                  <svg class="i"><use href="#i-bolt" /></svg>
+                  <span><b>Churn risk rising</b> for 12 enterprise accounts<small>Playbook “Save the renewal” triggered · just now</small></span>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ============ PRICING ============ -->
+      <section class="section pricing" id="pricing">
+        <div class="container">
+          <header class="section__head" data-reveal>
+            <p class="eyebrow">Pricing</p>
+            <h2>Simple pricing that <span class="grad">scales with you</span>.</h2>
+            <p>Every plan starts with a free 14-day trial. Upgrade, downgrade or cancel anytime.</p>
+          </header>
+
+          <div class="billing" data-reveal>
+            <span class="billing__m">Monthly</span>
+            <button class="switch" id="billing" type="button" role="switch" aria-checked="false" aria-label="Bill yearly"><span></span></button>
+            <span class="billing__y">Yearly <em>Save 20%</em></span>
+          </div>
+
+          <div class="plans">
+            <article class="plan tilt" data-reveal>
+              <h3>Starter</h3>
+              <p class="plan__desc">For small teams getting their first real-time view.</p>
+              <div class="price"><span class="price__cur">$</span><span class="price__amt" data-m="29" data-y="23">29</span><span class="price__per">/ month</span></div>
+              <p class="plan__billed">billed monthly</p>
+              <a href="#cta" class="btn btn--ghost btn--block">Start free trial</a>
+              <ul class="plan__list">
+                <li><svg class="i"><use href="#i-check" /></svg>Up to 3 seats</li>
+                <li><svg class="i"><use href="#i-check" /></svg>10 data sources</li>
+                <li><svg class="i"><use href="#i-check" /></svg>1M events / month</li>
+                <li><svg class="i"><use href="#i-check" /></svg>Core dashboards</li>
+                <li><svg class="i"><use href="#i-check" /></svg>Email support</li>
+              </ul>
+            </article>
+
+            <article class="plan plan--pop tilt" data-reveal style="--d:.08s">
+              <span class="plan__badge">Most popular</span>
+              <h3>Growth</h3>
+              <p class="plan__desc">For scaling teams that live and breathe their data.</p>
+              <div class="price"><span class="price__cur">$</span><span class="price__amt" data-m="99" data-y="79">99</span><span class="price__per">/ month</span></div>
+              <p class="plan__billed">billed monthly</p>
+              <a href="#cta" class="btn btn--primary btn--block">Start free trial <svg class="i"><use href="#i-arrow" /></svg></a>
+              <ul class="plan__list">
+                <li><svg class="i"><use href="#i-check" /></svg>Up to 15 seats</li>
+                <li><svg class="i"><use href="#i-check" /></svg>Unlimited data sources</li>
+                <li><svg class="i"><use href="#i-check" /></svg>25M events / month</li>
+                <li><svg class="i"><use href="#i-check" /></svg>AI Copilot &amp; anomaly radar</li>
+                <li><svg class="i"><use href="#i-check" /></svg>Priority chat support</li>
+              </ul>
+            </article>
+
+            <article class="plan tilt" data-reveal style="--d:.16s">
+              <h3>Scale</h3>
+              <p class="plan__desc">For organizations with advanced security and volume needs.</p>
+              <div class="price"><span class="price__cur">$</span><span class="price__amt" data-m="249" data-y="199">249</span><span class="price__per">/ month</span></div>
+              <p class="plan__billed">billed monthly</p>
+              <a href="#cta" class="btn btn--ghost btn--block">Talk to sales</a>
+              <ul class="plan__list">
+                <li><svg class="i"><use href="#i-check" /></svg>Unlimited seats</li>
+                <li><svg class="i"><use href="#i-check" /></svg>Unlimited events</li>
+                <li><svg class="i"><use href="#i-check" /></svg>SSO / SAML &amp; audit logs</li>
+                <li><svg class="i"><use href="#i-check" /></svg>EU or US data residency</li>
+                <li><svg class="i"><use href="#i-check" /></svg>Dedicated success manager</li>
+              </ul>
+            </article>
+          </div>
+          <p class="plans__note" data-reveal>Need on-prem, custom contracts or 1B+ events? <a href="#cta">Talk to our enterprise team →</a></p>
+        </div>
+      </section>
+
+      <!-- ============ TESTIMONIALS ============ -->
+      <section class="section" id="testimonials">
+        <div class="container">
+          <header class="section__head" data-reveal>
+            <p class="eyebrow">Testimonials</p>
+            <h2>Loved by teams who <span class="grad">ship on data</span>.</h2>
+            <p class="rating"><span class="stars" aria-hidden="true"><svg class="i"><use href="#i-star" /></svg><svg class="i"><use href="#i-star" /></svg><svg class="i"><use href="#i-star" /></svg><svg class="i"><use href="#i-star" /></svg><svg class="i"><use href="#i-star" /></svg></span><b>4.9 / 5</b> from 1,200+ verified reviews</p>
+          </header>
+        </div>
+
+        <div class="tmarquee" data-reveal>
+          <div class="marquee">
+            <div class="marquee__track" data-marquee>
+              <figure class="tcard">
+                <blockquote>“We replaced four dashboards and two weekly syncs with Quanta. Copilot flagged a checkout bug 40 minutes before our first support ticket.”</blockquote>
+                <figcaption><span class="avatar">PR</span><span><b>Priya Raman</b>Head of Product, Kestrel</span></figcaption>
+              </figure>
+              <figure class="tcard">
+                <blockquote>“Setup took one afternoon. By Friday our entire revenue team was living in Quanta instead of spreadsheets.”</blockquote>
+                <figcaption><span class="avatar">DO</span><span><b>Daniel Okafor</b>VP Revenue, Novaline</span></figcaption>
+              </figure>
+              <figure class="tcard">
+                <blockquote>“The anomaly alerts are scary good. It’s like having an analyst on the team who never sleeps.”</blockquote>
+                <figcaption><span class="avatar">SL</span><span><b>Sofia Lindqvist</b>COO, Helio</span></figcaption>
+              </figure>
+              <figure class="tcard">
+                <blockquote>“Finally, analytics our engineers and our marketers both trust. Same numbers, same truth, zero arguments.”</blockquote>
+                <figcaption><span class="avatar">MC</span><span><b>Marcus Chen</b>CTO, Brightforge</span></figcaption>
+              </figure>
+            </div>
+          </div>
+          <div class="marquee marquee--reverse">
+            <div class="marquee__track" data-marquee>
+              <figure class="tcard">
+                <blockquote>“Churn predictions gave us a six-week head start on our biggest renewals. That alone paid for the year.”</blockquote>
+                <figcaption><span class="avatar">AD</span><span><b>Amara Diallo</b>Customer Success Lead, Meridian</span></figcaption>
+              </figure>
+              <figure class="tcard">
+                <blockquote>“One Copilot insight about our onboarding funnel lifted activation by 19% in a single sprint.”</blockquote>
+                <figcaption><span class="avatar">LF</span><span><b>Lucas Ferreira</b>Growth Lead, Altitude</span></figcaption>
+              </figure>
+              <figure class="tcard">
+                <blockquote>“The living canvas is now the first tab every exec opens in the morning. Our weekly reporting meeting is gone.”</blockquote>
+                <figcaption><span class="avatar">HW</span><span><b>Hannah Weiss</b>Chief of Staff, Cobalt</span></figcaption>
+              </figure>
+              <figure class="tcard">
+                <blockquote>“Clean UI, ridiculous speed and a support team that actually answers in minutes. Rare combination.”</blockquote>
+                <figcaption><span class="avatar">KW</span><span><b>Kenji Watanabe</b>Data Engineer, Polaris</span></figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FAQ ============ -->
+      <section class="section" id="faq">
+        <div class="container faq__grid">
+          <header class="section__head section__head--left" data-reveal>
+            <p class="eyebrow">FAQ</p>
+            <h2>Questions, <span class="grad">answered</span>.</h2>
+            <p>Can’t find what you’re looking for? <a href="#cta">Talk to a human</a>. We usually reply in under 5 minutes.</p>
+          </header>
+          <div class="faq__list" data-reveal>
+            <details name="faq" open>
+              <summary>How long does setup take?<span class="faq__icon" aria-hidden="true"></span></summary>
+              <div class="faq__a"><p>Most teams connect their first sources and see live dashboards in under 15 minutes. Historical data backfills automatically in the background, usually within a few hours.</p></div>
+            </details>
+            <details name="faq">
+              <summary>Do I need engineers or SQL to use Quanta?<span class="faq__icon" aria-hidden="true"></span></summary>
+              <div class="faq__a"><p>No. Connectors are no-code and Copilot answers questions in plain English. Power users can still drop into SQL or our API whenever they like.</p></div>
+            </details>
+            <details name="faq">
+              <summary>How does the AI Copilot use my data?<span class="faq__icon" aria-hidden="true"></span></summary>
+              <div class="faq__a"><p>Your data is only used to answer your team’s questions. It is never used to train shared models, and admins can turn Copilot off per workspace at any time.</p></div>
+            </details>
+            <details name="faq">
+              <summary>Can I switch plans later?<span class="faq__icon" aria-hidden="true"></span></summary>
+              <div class="faq__a"><p>Yes. Upgrade, downgrade or switch between monthly and yearly billing whenever you like. We prorate the difference automatically.</p></div>
+            </details>
+            <details name="faq">
+              <summary>Is my data secure?<span class="faq__icon" aria-hidden="true"></span></summary>
+              <div class="faq__a"><p>Quanta is SOC 2 Type II certified, encrypts data at rest (AES-256) and in transit (TLS 1.3), and supports SSO/SAML, role-based access and EU or US data residency.</p></div>
+            </details>
+            <details name="faq">
+              <summary>What happens when my trial ends?<span class="faq__icon" aria-hidden="true"></span></summary>
+              <div class="faq__a"><p>You pick a plan or your workspace simply pauses. No surprise charges. Your dashboards and data are kept for 30 days in case you come back.</p></div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CTA ============ -->
+      <section class="cta" id="cta">
+        <div class="container">
+          <div class="cta__card" data-reveal>
+            <h2>Ready to see your data <span class="grad">move</span>?</h2>
+            <p>Join 4,000+ teams making faster, sharper calls with Quanta. Free for 14 days.</p>
+            <form class="cta__form" novalidate>
+              <label class="sr-only" for="email">Work email</label>
+              <input id="email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required />
+              <button class="btn btn--primary btn--lg" type="submit">Get started <svg class="i"><use href="#i-arrow" /></svg></button>
+            </form>
+            <p class="cta__msg" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+      <div class="container footer__grid">
+        <div class="footer__brand">
+          <a href="#hero" class="logo" aria-label="Quanta home"><svg><use href="#logo" /></svg><span>Quanta</span></a>
+          <p>Real-time analytics that thinks ahead. Built for teams who would rather act than wait for the weekly report.</p>
+          <div class="socials">
+            <a href="#" aria-label="Quanta on X"><svg class="i"><use href="#i-x" /></svg></a>
+            <a href="#" aria-label="Quanta on LinkedIn"><svg class="i"><use href="#i-in" /></svg></a>
+            <a href="#" aria-label="Quanta on GitHub"><svg class="i"><use href="#i-code" /></svg></a>
+            <a href="#" aria-label="Quanta on YouTube"><svg class="i"><use href="#i-yt" /></svg></a>
+          </div>
+          <span class="status"><span class="dot dot--live"></span>All systems operational</span>
+        </div>
+        <nav aria-label="Product">
+          <h3>Product</h3>
+          <a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#features">Integrations</a><a href="#">Changelog</a><a href="#">Roadmap</a>
+        </nav>
+        <nav aria-label="Company">
+          <h3>Company</h3>
+          <a href="#">About</a><a href="#">Careers <em class="hiring">Hiring</em></a><a href="#">Blog</a><a href="#">Press</a><a href="#cta">Contact</a>
+        </nav>
+        <nav aria-label="Resources">
+          <h3>Resources</h3>
+          <a href="#">Documentation</a><a href="#">API reference</a><a href="#">Guides</a><a href="#">Community</a><a href="#faq">Help center</a>
+        </nav>
+        <nav aria-label="Legal">
+          <h3>Legal</h3>
+          <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Security</a><a href="#">DPA</a><a href="#">Cookies</a>
+        </nav>
+      </div>
+      <div class="container footer__bottom">
+        <p>© <span id="year">2026</span> Quanta Labs, Inc. All rights reserved.</p>
+        <p>Crafted for teams who move fast.</p>
+      </div>
+      <div class="footer__word" aria-hidden="true">QUANTA</div>
+    </footer>
+  </body>
+</html>
