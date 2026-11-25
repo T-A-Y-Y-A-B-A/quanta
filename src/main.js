@@ -31,7 +31,13 @@ const navLinks = $$('#menu a:not(.btn)')
 const spy = new IntersectionObserver(
   (entries) => {
     for (const e of entries) {
-      if (e.isIntersecting) navLinks.forEach((a) => a.classList.toggle('active', a.hash === `#${e.target.id}`))
+      if (!e.isIntersecting) continue
+      for (const a of navLinks) {
+        const current = a.hash === `#${e.target.id}`
+        a.classList.toggle('active', current)
+        if (current) a.setAttribute('aria-current', 'location')
+        else a.removeAttribute('aria-current')
+      }
     }
   },
   { rootMargin: '-45% 0px -50% 0px' },
