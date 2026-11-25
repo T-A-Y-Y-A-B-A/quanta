@@ -481,7 +481,7 @@ h1, h2, h3, h4 { text-wrap: balance; }
 .feat,
 .plan { isolation: isolate; }
 .js .tilt {
-  transition: opacity 0.9s var(--ease) var(--d, 0s), translate 0.9s var(--ease) var(--d, 0s), transform 0.35s var(--ease), border-color 0.3s;
+  transition: opacity 0.9s var(--ease) var(--d, 0s), translate 0.9s var(--ease) var(--d, 0s), transform 0.35s var(--ease), border-color 0.3s, filter 0.4s var(--ease);
 }
 .feat::before,
 .plan::before {
@@ -733,6 +733,10 @@ h1, h2, h3, h4 { text-wrap: balance; }
   padding: 5px 14px; border-radius: 999px; background: var(--btn); color: var(--on-btn);
   box-shadow: 0 6px 20px -4px rgba(240, 83, 31, 0.8);
   font-size: 0.75rem; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap;
+}
+/* Hovering one plan gently dims the other two. */
+@media (hover: hover) {
+  .plans:has(.plan:hover) .plan:not(:hover) { filter: brightness(0.7) saturate(0.85); }
 }
 .plans__note { margin: 2.4rem 0 0; color: var(--muted); text-align: center; }
 
